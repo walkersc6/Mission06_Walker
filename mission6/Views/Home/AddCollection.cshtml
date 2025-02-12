@@ -1,0 +1,51 @@
+﻿@model Movie
+<h1>Add to the Collection!</h1>
+<p>Please fill out the following information:</p>
+
+<form method = "post">
+    <label asp-for="Category">Category:</label>
+    <input asp-for ="Category" type="text" required />
+    <br />
+    <br />
+    <label asp-for="Title">Movie Title:</label>
+    <input asp-for="Title" type="text" required/>
+    <br />
+    <br />
+    <label asp-for="Year">Release Year:</label>
+    <input asp-for="Year" type="text" required/>
+    <br />
+    <br />
+    <label asp-for="Director">Director:</label>
+    <input asp-for="Director" type="text" required/>
+    <br />
+    <br />
+    @* rating should be a drop down *@
+    <label asp-for="Rating">Rating:</label>
+    <select asp-for="Rating" required>
+        <option value ="G">G</option>
+        <option value="PG">PG</option>
+        <option value="PG-13">PG-13</option>
+        <option value="R">R</option>
+    </select>
+	<br />   
+    <br />
+    @* Edited, lent to, and notes are not requried *@
+    @* Edited should be a yes/no option *@
+    <label asp-for="Edited">Edited:</label>
+    <select asp-for="Edited">
+		<option value="false">No</option>
+		<option value="true">Yes</option>
+    </select>
+    <br />
+    <br />
+    <label asp-for="LentTo">Lent to:</label>
+    <input asp-for="LentTo" type="text" />
+	<br />  
+    <br />
+    @* notes should be limited to 25 characters *@
+    <label asp-for="Notes">Notes:</label>
+    <input asp-for="Notes" type="text" maxlength="25"/>
+    <br />
+    <br />
+    <button type="submit">Add to the Collection</button>
+</form>
