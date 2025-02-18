@@ -37,5 +37,13 @@ namespace mission6.Controllers
             _context.SaveChanges();
             return View("Index");
         }
+
+        public IActionResult ListMovies()
+        {
+            var movie = _context.Movies
+                .OrderBy(x => x.MovieId)
+                .ToList();
+            return View();
+        }
     }
 }
