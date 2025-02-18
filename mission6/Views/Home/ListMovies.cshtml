@@ -3,11 +3,11 @@
 *@
 @{
 }
+@model List<Movie>
 
-<table>
+<table class="table table-striped > tbody > tr:nth-of-type(odd)">
     <thead>
         <tr>
-            <td>MovieId</td>
             <td>Category</td>
             <td>Title</td>
             <td>Year</td>
@@ -19,18 +19,21 @@
             <td>Notes</td>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>MovieId</td>
-            <td>Category</td>
-            <td>Title</td>
-            <td>Year</td>
-            <td>Director</td>
-            <td>Rating</td>
-            <td>Edited</td>
-            <td>Lent To</td>
-            <td>Copied to Plex</td>
-            <td>Notes</td>
-        </tr>
-    </tbody>
+    @foreach(var index in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@index.Category.CategoryName</td>
+                <td>@index.Title</td>
+                <td>@index.Year</td>
+                <td>@index.Director</td>
+                <td>@index.Rating</td>
+                <td>@index.Edited</td>
+                <td>@index.LentTo</td>
+                <td>@index.CopiedToPlex</td>
+                <td>@index.Notes</td>
+            </tr>
+        </tbody>
+    }
+
 </table>

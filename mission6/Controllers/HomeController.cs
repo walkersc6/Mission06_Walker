@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using mission6.Models;
 using SQLitePCL;
 
@@ -27,6 +28,9 @@ namespace mission6.Controllers
         [HttpGet]
         public IActionResult AddCollection() //retrieve Add Collection view
         {
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
             return View();
         }
 
@@ -40,10 +44,18 @@ namespace mission6.Controllers
 
         public IActionResult ListMovies()
         {
-            var movie = _context.Movies
-                .OrderBy(x => x.MovieId)
+            var movies = _context.Movies
+                .Include(x => x.Category)
+                .OrderBy(x => x.Title)
                 .ToList();
-            return View();
+
+            //if (movie.Category == null)
+            //{
+            //    Console.WriteLine("Category is null");
+            //}
+
+            return View(movies);
         }
+
     }
 }

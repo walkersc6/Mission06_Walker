@@ -7,5 +7,7 @@ namespace mission6.Models
         public MovieCollectionContext(DbContextOptions<MovieCollectionContext> options) : base(options) { }
 
         public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }
