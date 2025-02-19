@@ -3,8 +3,12 @@
 <p>Please fill out the following information:</p>
 
 <form method = "post">
+    @*hide the movie id so we can use this view to edit movies too*@
+    <input type="hidden" asp-for="MovieId" />
+
     <select asp-for="CategoryId">Category:
         <option value ="">Select a Category:</option>
+        @*Iterate through each category id and display the category name*@
         @foreach (Category c in ViewBag.Categories)
         {
             <option value="@c.CategoryId">@c.CategoryName</option>
@@ -12,29 +16,43 @@
     </select>
     <br />
     <br />
+
+    @*Required*@
     <label asp-for="Title">Movie Title:</label>
     <input asp-for="Title" type="text" required/>
     <br />
     <br />
+
+    @*Required*@
     <label asp-for="Year">Release Year:</label>
-    <input asp-for="Year" type="number" min = "1888" required/>
+    <input asp-for="Year" type="number" min = "1888" required/> @*Year should not be lower than 1888*@
     <br />
     <br />
+
     <label asp-for="Director">Director:</label>
     <input asp-for="Director" type="text"/>
     <br />
     <br />
+
     @* rating should be a drop down *@
+    @* Official Database includes NR, TV-14, UR, TV-PG, TV-Y7, TV-G *@
     <label asp-for="Rating">Rating:</label>
     <select asp-for="Rating">
-        <option value ="G">G</option>
+        <option value="NR">Not Rated</option>
+        <option value="TV-Y7">TV-Y7</option>
+        <option value="G">G</option>
+        <option value="TV-G">TV-G</option>
         <option value="PG">PG</option>
-        <option value="PG-13">PG-13</option>
-        <option value="R">R</option>
+        <option value="TV-PG">TV-PG</option>
+		<option value="PG-13">PG-13</option>
+		<option value="TV-14">TV-14</option>
+		<option value="R">R</option>
+		<option value="UR"> Unrated</option>
     </select>
 	<br />   
     <br />
-    @* Edited, lent to, and notes are not requried *@
+
+    @* Required *@
     @* Edited should be a yes/no option *@
     <label asp-for="Edited">Edited:</label>
     <select asp-for="Edited" required>
@@ -43,10 +61,13 @@
     </select>
     <br />
     <br />
+
     <label asp-for="LentTo">Lent to:</label>
     <input asp-for="LentTo" type="text" />
 	<br />  
     <br />
+
+    @*Required*@
     <label asp-for="CopiedToPlex">Copied to Plex:</label>
     <select asp-for="CopiedToPlex" required>
         <option value="false">No</option>
@@ -54,14 +75,12 @@
     </select>
     <br />
     <br />
+
     @* notes should be limited to 25 characters *@
     <label asp-for="Notes">Notes:</label>
     <input asp-for="Notes" type="text" maxlength="25"/>
     <br />
     <br />
+
     <button type="submit">Add to the Collection</button>
 </form>
-
-@*     Do not allow a movie to be entered into the database unless has all these required *@
-@* fields (Title, Year, Edited, CopiedToPlex). The user should also not be allowed to *@
-@* enter a year lower than 1888 (the year the first movie came out.) *@

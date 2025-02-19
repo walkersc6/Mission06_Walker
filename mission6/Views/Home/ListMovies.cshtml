@@ -19,20 +19,22 @@
             <td>Notes</td>
         </tr>
     </thead>
+
     @foreach(var index in Model)
     {
         <tbody>
             <tr>
+                @*Since Category is not required, we need to check for nulls*@
                 @if (index.CategoryId != null)
                 {
                     <td>@index.Category.CategoryName</td>
                 }
                 else
                 {
-                    <td>Category: Not available</td>
+                    <td>Category: Not Entered</td>
                 }
 
-                @* <td>@index.Category.CategoryName</td> *@
+                @* <td>@index.Category.CategoryName</td>  *@
                 <td>@index.Title</td>
                 <td>@index.Year</td>
                 <td>@index.Director</td>
@@ -41,6 +43,10 @@
                 <td>@index.LentTo</td>
                 <td>@index.CopiedToPlex</td>
                 <td>@index.Notes</td>
+
+                @*Add buttons to edit and delete*@
+                <td><a class = "btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@index.MovieId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@index.MovieId">Delete</a></td>
             </tr>
         </tbody>
     }
