@@ -23,7 +23,16 @@
     {
         <tbody>
             <tr>
-                <td>@index.Category.CategoryName</td>
+                @if (index.CategoryId != null)
+                {
+                    <td>@index.Category.CategoryName</td>
+                }
+                else
+                {
+                    <td>Category: Not available</td>
+                }
+
+                @* <td>@index.Category.CategoryName</td> *@
                 <td>@index.Title</td>
                 <td>@index.Year</td>
                 <td>@index.Director</td>

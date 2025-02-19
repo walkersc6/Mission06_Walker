@@ -3,11 +3,11 @@
 <p>Please fill out the following information:</p>
 
 <form method = "post">
-    <select asp-for="Category">Category:
+    <select asp-for="CategoryId">Category:
         <option value ="">Select a Category:</option>
         @foreach (Category c in ViewBag.Categories)
         {
-            <option value ="@c.CategoryName">@c.CategoryName</option>
+            <option value="@c.CategoryId">@c.CategoryName</option>
         }
     </select>
     <br />
@@ -17,7 +17,7 @@
     <br />
     <br />
     <label asp-for="Year">Release Year:</label>
-    <input asp-for="Year" type="text" min = "1888" required/>
+    <input asp-for="Year" type="number" min = "1888" required/>
     <br />
     <br />
     <label asp-for="Director">Director:</label>
